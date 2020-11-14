@@ -15,9 +15,7 @@ class App extends Component {
 
   getTrivia = async (formData) => {
     const triviaResults = await api.getTrivia(formData);
-    console.log(triviaResults, triviaResults)
     this.setState({ trivia: triviaResults.results })
-    console.log(this.state.trivia)
   }
 
   componentDidMount = async () => {
