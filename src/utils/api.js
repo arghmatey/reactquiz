@@ -6,5 +6,8 @@ export function getCategories() {
 }
 
 export function getTrivia(formData) {
-    return fetch(`${BASE_URL}amount=${formData.amount}&difficulty=${formData.difficulty}&category=${formData.category}`).then(res => res.json());
-}
+    console.log(`${BASE_URL}amount=${formData.amount}&category=${formData.category}&difficulty=${formData.difficulty}`);
+    return fetch(`${BASE_URL}amount=${formData.amount}&category=${formData.category}&difficulty=${formData.difficulty}`).then(res => res.json()).catch((error) => {
+        console.error('Error:', error);
+    })
+};
