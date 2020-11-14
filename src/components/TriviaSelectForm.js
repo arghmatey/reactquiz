@@ -32,9 +32,9 @@ class TriviaSelectForm extends Component {
                         value={this.state.category}
                         onChange={this.handleChange}
                     >
-                        <option value='21'>sports</option>
-                        <option value='23'>history</option>
-                        <option value='24'>politics</option>
+                        <option id='any'>Any Category</option>
+                        {this.props.categories.map((category, idx) =>
+                            <option key={idx} id={category.id}>{category.name}</option>)}
                     </select>
                     <label htmlFor='amount'>How many questions?</label>
                     <input
