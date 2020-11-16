@@ -7,6 +7,9 @@ const Trivia = props => {
             {props.trivia.map((t, idx) =>
                 <div key={idx}>
                     <div>{t.question}</div>
+                    {t.allAnswers.map((answer, idx) =>
+                        <div key={idx}>{answer}</div>
+                    )}
                     <div>CORRECT: {t.correct_answer}</div>
                     <div>INCORRECT:
                     {t.incorrect_answers.map((i_a, idx) =>

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import TriviaSelectForm from './components/TriviaSelectForm';
 import Trivia from './components/Trivia'
 import * as api from './utils/api';
+import * as trivia from './utils/trivia';
 
 class App extends Component {
   constructor() {
@@ -15,7 +16,8 @@ class App extends Component {
 
   getTrivia = async (formData) => {
     const triviaResults = await api.getTrivia(formData);
-    this.setState({ trivia: triviaResults.results })
+    const results = trivia.shuffleAnswers(triviaResults.results);
+    this.setState({ trivia: results })
   }
 
   componentDidMount = async () => {
@@ -42,6 +44,7 @@ class App extends Component {
             <Trivia
               history={history}
               trivia={this.state.trivia}
+              answers={this.state.answers}
             />
           } />
         </Router>
