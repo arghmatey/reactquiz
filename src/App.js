@@ -9,13 +9,15 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      categories: [],
       trivia: [],
-      categories: []
+      correct: 0
     }
   }
 
   getTrivia = async (formData) => {
     const triviaResults = await api.getTrivia(formData);
+    console.log(triviaResults)
     const results = trivia.shuffleAnswers(triviaResults.results);
     this.setState({ trivia: results })
   }
@@ -44,7 +46,8 @@ class App extends Component {
             <Trivia
               history={history}
               trivia={this.state.trivia}
-              answers={this.state.answers}
+              correct={this.state.correct}
+              checkAnswer={this.checkAnswer}
             />
           } />
         </Router>

@@ -2,21 +2,17 @@ import React from 'react';
 
 const Trivia = props => {
 
+
     return (
         <div>
+            <div>{props.correct}/{props.trivia.length}</div>
             {props.trivia.map((t, idx) =>
                 <div key={idx}>
                     <div>{t.question}</div>
+                    <div>{t.correct_answer}</div>
                     {t.allAnswers.map((answer, idx) =>
-                        <div key={idx}>{answer}</div>
+                        <button key={idx}>{answer}</button>
                     )}
-                    <div>CORRECT: {t.correct_answer}</div>
-                    <div>INCORRECT:
-                    {t.incorrect_answers.map((i_a, idx) =>
-                        <div key={idx}>
-                            {i_a}
-                        </div>)}
-                    </div>
                 </div>
             )}
         </div>

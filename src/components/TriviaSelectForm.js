@@ -5,7 +5,7 @@ class TriviaSelectForm extends Component {
         super(props)
         this.state = {
             amount: 10,
-            category: '23',
+            category: 23,
             difficulty: 'easy'
         }
     }
