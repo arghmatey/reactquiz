@@ -11,7 +11,7 @@ const Trivia = props => {
                     <div>{t.question}</div>
                     <div>{t.correct_answer}</div>
                     {t.allAnswers.map((answer, idx) =>
-                        <button key={idx}>{answer}</button>
+                        <button key={idx} onClick={() => props.checkAnswer(answer === t.correct_answer)}>{answer}</button>
                     )}
                 </div>
             )}

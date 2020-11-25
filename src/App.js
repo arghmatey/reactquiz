@@ -22,6 +22,12 @@ class App extends Component {
     this.setState({ trivia: results })
   }
 
+  checkAnswer = (ans) => {
+    if (ans) {
+      this.setState({ correct: this.state.correct + 1 })
+    } else return
+  }
+
   componentDidMount = async () => {
     const apiCategories = await api.getCategories();
     this.setState({
