@@ -20,8 +20,8 @@ class App extends Component {
   getTrivia = async (formData) => {
     const triviaResults = await api.getTrivia(formData);
     const results = trivia.randomizeAnswers(triviaResults.results);
-    console.log(trivia.correctAnswers(triviaResults.results))
-    this.setState({ trivia: results })
+    const correctAnswers = trivia.correctAnswers(triviaResults.results);
+    this.setState({ trivia: results, correctAnswers })
   }
 
   checkAnswer = (ans) => {
