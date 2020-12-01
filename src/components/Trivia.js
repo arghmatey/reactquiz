@@ -18,7 +18,7 @@ class Trivia extends Component {
                         {t.allAnswers.map((answer, i) =>
                             <div>
                                 <input id={i} type='radio' name={idx} value={answer} />
-                                <label for={i}>{answer}</label>
+                                <label htmlFor={i}>{answer}</label>
                             </div>
                         )}
                     </div>

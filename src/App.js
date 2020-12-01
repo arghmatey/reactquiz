@@ -12,14 +12,15 @@ class App extends Component {
     this.state = {
       categories: [],
       trivia: [],
+      correctAnswers: {},
       correct: 0
     }
   }
 
   getTrivia = async (formData) => {
     const triviaResults = await api.getTrivia(formData);
-    console.log(triviaResults)
-    const results = trivia.shuffleAnswers(triviaResults.results);
+    const results = trivia.randomizeAnswers(triviaResults.results);
+    console.log(trivia.correctAnswers(triviaResults.results))
     this.setState({ trivia: results })
   }
 
