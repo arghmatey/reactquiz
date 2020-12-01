@@ -1,24 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Trivia = props => {
+class Trivia extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            submitted: {}
+        }
+    }
 
+    render() {
 
-    return (
-        <div>
-            <div>{props.correct}/{props.trivia.length}</div>
-            {props.trivia.map((t, idx) =>
-                <div key={idx}>
-                    <div>{t.question}</div>
-                    <div>{t.correct_answer}</div>
-                    {t.allAnswers.map((answer, idx) =>
-                        <button key={idx} onClick={() => props.checkAnswer(answer === t.correct_answer)}>{answer}</button>
-                    )}
-                </div>
-            )}
-        </div>
-    )
-
-
+        return (
+            <div>
+                {this.props.trivia.map((t, idx) =>
+                    <div key={idx}>
+                        <div>{t.question}</div>
+                        {t.allAnswers.map((answer, i) =>
+                            <div>
+                                <input id={i} type='radio' name={idx} value={answer} />
+                                <label for={i}>{answer}</label>
+                            </div>
+                        )}
+                    </div>
+                )}
+                <button type='submit'>Check Answers</button>
+            </div>
+        )
+    }
 }
 
 export default Trivia;

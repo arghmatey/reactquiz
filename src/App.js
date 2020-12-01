@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import './App.css'
 import TriviaSelectForm from './components/TriviaSelectForm';
 import Trivia from './components/Trivia'
 import * as api from './utils/api';
@@ -38,25 +39,27 @@ class App extends Component {
   render() {
 
     return (
-      <div className="App" >
+      <div className="App">
         <header className="App-header">
         </header>
-        <Router>
-          <Route exact path='/' render={({ history }) =>
-            <TriviaSelectForm
-              history={history}
-              categories={this.state.categories}
-              getTrivia={this.getTrivia} />
-          } />
-          <Route exact path='/trivia' render={({ history }) =>
-            <Trivia
-              history={history}
-              trivia={this.state.trivia}
-              correct={this.state.correct}
-              checkAnswer={this.checkAnswer}
-            />
-          } />
-        </Router>
+        <main>
+          <Router>
+            <Route exact path='/' render={({ history }) =>
+              <TriviaSelectForm
+                history={history}
+                categories={this.state.categories}
+                getTrivia={this.getTrivia} />
+            } />
+            <Route exact path='/trivia' render={({ history }) =>
+              <Trivia
+                history={history}
+                trivia={this.state.trivia}
+                correct={this.state.correct}
+                checkAnswer={this.checkAnswer}
+              />
+            } />
+          </Router>
+        </main>
       </div>
     );
   }
