@@ -8,6 +8,6 @@ export function randomizeAnswers(results) {
 
 export function correctAnswers(results) {
     return results.reduce((acc, val, idx) => {
-        return { ...acc, [`correct-${idx}`]: val.correct_answer }
+        return { ...acc, [idx]: val.correct_answer }
     }, {})
 }

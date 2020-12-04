@@ -4,7 +4,23 @@ class Trivia extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            submitted: {}
+            submitted: {},
+            correct: 0
+        }
+    }
+
+    handleChange = e => {
+        this.setState({ submitted: { ...this.state.submitted, [e.target.name]: e.target.value } });
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+        for (const key in this.state.submitted) {
+            if (this.state.submitted[key] === this.props.correctAnswers[key]) {
+                this.setState({ correct: this.state.correct + 1 })
+            } else {
+                return
+            }
         }
     }
 
@@ -16,14 +32,14 @@ class Trivia extends Component {
                     <div key={idx}>
                         <div>{t.question}</div>
                         {t.allAnswers.map((answer, i) =>
-                            <div>
-                                <input id={i} type='radio' name={idx} value={answer} />
+                            <div key={i}>
+                                <input id={`${idx}-${i}`} type='radio' name={idx} value={answer} onChange={this.handleChange} />
                                 <label htmlFor={i}>{answer}</label>
                             </div>
                         )}
                     </div>
                 )}
-                <button type='submit'>Check Answers</button>
+                <button type='submit' onClick={this.handleSubmit}>Check Answers</button>
             </div>
         )
     }

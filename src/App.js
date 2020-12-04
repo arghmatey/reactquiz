@@ -12,13 +12,12 @@ class App extends Component {
     this.state = {
       categories: [],
       trivia: [],
-      correctAnswers: {},
-      correct: 0
+      correctAnswers: {}
     }
   }
 
   getTrivia = async (formData) => {
-    const triviaResults = await api.getTrivia(formData);
+    let triviaResults = await api.getTrivia(formData);
     const results = trivia.randomizeAnswers(triviaResults.results);
     const correctAnswers = trivia.correctAnswers(triviaResults.results);
     this.setState({ trivia: results, correctAnswers })
@@ -55,7 +54,7 @@ class App extends Component {
               <Trivia
                 history={history}
                 trivia={this.state.trivia}
-                correct={this.state.correct}
+                correctAnswers={this.state.correctAnswers}
                 checkAnswer={this.checkAnswer}
               />
             } />
