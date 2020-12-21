@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import './App.css'
+import './App.css';
 import TriviaSelectForm from './components/TriviaSelectForm';
-import Trivia from './components/Trivia'
+import Trivia from './components/Trivia';
+import TriviaResults from './components/TriviaResults';
 import * as api from './utils/api';
 import * as trivia from './utils/trivia';
 
@@ -12,7 +13,8 @@ class App extends Component {
     this.state = {
       categories: [],
       trivia: [],
-      correctAnswers: {}
+      correctAnswers: {},
+      score: 0
     }
   }
 
@@ -23,10 +25,9 @@ class App extends Component {
     this.setState({ trivia: results, correctAnswers })
   }
 
-  checkAnswer = (ans) => {
-    if (ans) {
-      this.setState({ correct: this.state.correct + 1 })
-    } else return
+  handleScore = (correct) => {
+    let score = (correct / this.state.trivia.length) * 100;
+    this.setState({ score: score })
   }
 
   componentDidMount = async () => {
@@ -55,7 +56,13 @@ class App extends Component {
                 history={history}
                 trivia={this.state.trivia}
                 correctAnswers={this.state.correctAnswers}
-                checkAnswer={this.checkAnswer}
+                handleScore={this.handleScore}
+              />
+            } />
+            <Route exact path='/results' render={({ history }) =>
+              <TriviaResults
+                history={history}
+                score={this.state.score}
               />
             } />
           </Router>

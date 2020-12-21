@@ -4,8 +4,7 @@ class Trivia extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            submitted: {},
-            correct: 0
+            submitted: {}
         }
     }
 
@@ -13,15 +12,18 @@ class Trivia extends Component {
         this.setState({ submitted: { ...this.state.submitted, [e.target.name]: e.target.value } });
     }
 
-    handleSubmit = e => {
+    handleAnswerCheck = e => {
         e.preventDefault();
+        let correct = 0;
         for (const key in this.state.submitted) {
             if (this.state.submitted[key] === this.props.correctAnswers[key]) {
-                this.setState({ correct: this.state.correct + 1 })
+                correct++
             } else {
-                return
+                console.log('wrong')
             }
         }
+        this.props.handleScore(correct);
+        this.props.history.push('/results');
     }
 
     render() {
@@ -39,7 +41,7 @@ class Trivia extends Component {
                         )}
                     </div>
                 )}
-                <button type='submit' onClick={this.handleSubmit}>Check Answers</button>
+                <button type='submit' onClick={this.handleAnswerCheck}>Check Answers</button>
             </div>
         )
     }
